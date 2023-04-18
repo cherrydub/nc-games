@@ -6,8 +6,13 @@ const baseAPI = axios.create({
 
 export const getReviews = () => {
   return baseAPI.get("/reviews").then((res) => {
-    console.log(res, "this is res api.js");
     return res.data.reviews;
+  });
+};
+
+export const getReviewID = (review_id) => {
+  return baseAPI.get(`/reviews/${review_id}`).then((res) => {
+    return res.data.review;
   });
 };
 
