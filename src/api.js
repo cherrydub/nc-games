@@ -10,9 +10,15 @@ export const getReviews = () => {
   });
 };
 
-export const getReviewID = (review_id) => {
+export const getReviewId = (review_id) => {
   return baseAPI.get(`/reviews/${review_id}`).then((res) => {
     return res.data.review;
+  });
+};
+
+export const getReviewIdcomments = (review_id) => {
+  return baseAPI.get(`/reviews/${review_id}/comments`).then((res) => {
+    return res.data.comments;
   });
 };
 
