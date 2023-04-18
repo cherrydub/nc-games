@@ -10,7 +10,7 @@ export default function ReviewCard({
   comment_count,
 }) {
   return (
-    <div className="ReviewCard">
+    <div className="ReviewCard border border-black border-2 max-w-xs">
       <img src={review_img_url} alt={title} />
       <ul>
         <li>Owner: {owner}</li>
