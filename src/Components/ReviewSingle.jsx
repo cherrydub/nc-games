@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getReviewId, getReviewIdcomments } from "../api";
 import { Link } from "react-router-dom";
+import ReviewIdComments from "./ReviewIdComments";
 
 export default function ReviewSingle() {
   const { review_id } = useParams();
@@ -27,11 +28,13 @@ export default function ReviewSingle() {
         <li>Designer: {singleReview.designer}</li>
       </ul>
       <p>view comments link</p>
-      <Link to={`/reviews/${review_id}/comments`} key={review_id}>
+      Comments:
+      <ReviewIdComments />
+      {/* <Link to={`/reviews/${review_id}/comments`} key={review_id}>
         <button className="rounded-full text-black opacity-50 px-4 py-2 hover:opacity-100 bg-orange-300">
-          Check out comments for ID {review_id}
+          Check out comments
         </button>
-      </Link>
+      </Link> */}
     </div>
   );
 }
