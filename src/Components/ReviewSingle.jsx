@@ -1,31 +1,59 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReviewID } from "../api";
+import { getReviewId, getReviewIdcomments } from "../api";
+import { Link } from "react-router-dom";
+import ReviewIdComments from "./ReviewIdComments";
 
 export default function ReviewSingle() {
   const { review_id } = useParams();
   const [singleReview, setSingleReview] = useState([]);
 
   useEffect(() => {
-    getReviewID(review_id).then((data) => {
+    getReviewId(review_id).then((data) => {
       setSingleReview(data);
     });
   }, [review_id]);
 
   return (
-    <div className="ReviewSingle">
-      <ul>
-        <li>Owner: {singleReview.owner}</li>
-        <li>Title: {singleReview.title}</li>
-        <li>Review: {singleReview.review_body}</li>
-        <li>Reiew ID: {singleReview.review_id}</li>
-        <li>Cateogry: {singleReview.category}</li>
-        <li>
-          <img src={singleReview.review_img_url} alt={singleReview.title} />
-        </li>
-        <li>Votes: {singleReview.votes}</li>
-        <li>Designer: {singleReview.designer}</li>
-      </ul>
+    <div className="flex justify-center">
+      <div className="ReviewSingle border-black border max-w-xs">
+        <img src={singleReview.review_img_url} alt={singleReview.title} />
+        <div className="p-1">
+          <ul>
+            <li>
+              <span className="font-bold">Owner: </span>
+              {singleReview.owner}
+            </li>
+            <li>
+              <span className="font-bold">Title: </span> {singleReview.title}
+            </li>
+            <li>
+              <span className="font-bold">Review: </span>
+              {singleReview.review_body}
+            </li>
+            <li>
+              <span className="font-bold">Category: </span>
+              {singleReview.category}
+            </li>
+
+            <li>
+              <span className="font-bold">Votes: </span>
+              {singleReview.votes}
+            </li>
+            <li>
+              <span className="font-bold">Designer: </span>
+              {singleReview.designer}
+            </li>
+          </ul>
+          <span className="font-bold">Comments: </span>
+          <ReviewIdComments />
+          {/* <Link to={`/reviews/${review_id}/comments`} key={review_id}>
+        <button className="rounded-full text-black opacity-50 px-4 py-2 hover:opacity-100 bg-orange-300">
+          Check out comments
+        </button>
+      </Link> */}
+        </div>
+      </div>
     </div>
   );
 }

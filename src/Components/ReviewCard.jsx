@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import ReviewSingle from "./ReviewSingle";
 
 export default function ReviewCard({
   owner,
@@ -20,48 +19,67 @@ export default function ReviewCard({
   };
 
   return (
-    <div className="ReviewCard border-black border-2 max-w-xs">
+    <div className="ReviewCard border-black border max-w-xs">
       <img src={review_img_url} alt={title} />
-      <ul>
-        {/* <li>Owner: {owner}</li> */}
-        <li>Title: {title}</li>
-        {/* <li>Review ID: {review_id}</li> */}
-        <li>Category: {category}</li>
-        <li>
-          <Link to={`/reviews/${review_id}`} key={review_id}>
-            <button className="rounded-full text-black opacity-50 px-4 py-2 hover:opacity-100 bg-orange-300">
-              Click for more info
-            </button>
-          </Link>
-        </li>
+      <div className="p-1">
+        <ul>
+          <li>
+            <span className="font-bold">Title: </span>
+            {title}
+          </li>
 
-        {showReview ? (
-          <div>
-            More info will go here soon
-            <p></p>
-            .....
-            <p></p>
-            <button
-              className="text-black opacity-50 px-4 py-2 hover:opacity-100 bg-red-300"
-              onClick={handleExpand}
-            >
-              go back
-            </button>
-            {/* Additional content to show when "show more" is clicked */}
-          </div>
-        ) : (
+          <li>
+            <span className="font-bold">Category: </span>
+            {category}
+          </li>
+        </ul>
+      </div>
+
+      {showReview ? (
+        <div className="px-1">
+          <ul>
+            <li>
+              <span className="font-bold">Owner: </span>
+              {owner}
+            </li>
+            <li>
+              <span className="font-bold">Votes: </span>
+              {votes}
+            </li>
+            <li>
+              <span className="font-bold">Designer: </span>
+              {designer}
+            </li>
+            <li>
+              <span className="font-bold">Comment Count: </span>
+              {comment_count}
+            </li>
+          </ul>
+          <p></p>
           <button
-            className="rounded-full text-black opacity-50 px-4 py-2 hover:opacity-100 bg-blue-300"
+            className="text-black opacity-50 hover:opacity-100 bg-red-300"
             onClick={handleExpand}
           >
-            expand
+            show less
           </button>
-        )}
-        {/* 
-        <li>votes: {votes}</li>
-        <li>designer: {designer}</li>
-        <li>comment count: {comment_count}</li> */}
-      </ul>
+        </div>
+      ) : (
+        <button
+          className="text-black opacity-50 hover:opacity-100 bg-blue-300"
+          onClick={handleExpand}
+        >
+          expand
+        </button>
+      )}
+      <p>
+        <Link to={`/reviews/${review_id}`} key={review_id}>
+          <div className="text-right">
+            <button className="text-black opacity-50 hover:opacity-100 bg-green-300">
+              more info <span>{`>>>`}</span>
+            </button>
+          </div>
+        </Link>
+      </p>
     </div>
   );
 }

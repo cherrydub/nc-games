@@ -15,3 +15,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+@font-face {
+  font-family: "gamefont";
+  src: url("../src/fonts/gamefont.ttf") format("truetype");
+}
+
+.font-gamefont {
+  font-family: "gamefont", sans-serif;
+  font-size: 2rem;
+}
+
+#nc-header {
+  font-size: 8rem;
+}
+
+html {
+  font-family: "Courier New", Courier, monospace;
+}
