@@ -29,7 +29,9 @@ export const getCategories = () => {
 };
 
 export const patchVotes = (review_id) => {
-  return baseAPI.patch(`/reviews/${review_id}`, { votes: 1 }).then((res) => {
-    return res.data.review;
-  });
+  return baseAPI
+    .patch(`/reviews/${review_id}`, { inc_votes: 1 })
+    .then((res) => {
+      return res.data.review;
+    });
 };
