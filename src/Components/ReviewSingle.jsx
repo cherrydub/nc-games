@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReviewId, getReviewIdcomments } from "../api";
+import { getReviewId, patchVotes } from "../api";
 import { Link } from "react-router-dom";
 import ReviewIdComments from "./ReviewIdComments";
 
 export default function ReviewSingle() {
   const { review_id } = useParams();
   const [singleReview, setSingleReview] = useState([]);
+  const [voteCount, setVoteCount] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getReviewId(review_id).then((data) => {
       setSingleReview(data);
     });
   }, [review_id]);
+
+  const handleVoteClick = (review_id) => {
+    setVoteCount(1);
+    patchVotes(review_id).catch((err) => {
+      setError({ err });
+      setVoteCount(0);
+    });
+  };
 
   return (
     <div className="flex justify-center">
@@ -38,14 +48,34 @@ export default function ReviewSingle() {
 
             <li>
               <span className="font-bold">Votes: </span>
-              {singleReview.votes}
+              {singleReview.votes + voteCount}
+              <span> </span>
+              {voteCount ? (
+                <span className="bg-blue-200">thanks for voting!</span>
+              ) : (
+                <button
+                  onClick={() => handleVoteClick(review_id)}
+                  className="text-black opacity-100 hover:opacity-75 bg-green-300 px-2"
+                >
+                  +
+                </button>
+              )}
+              {error ? (
+                <h1 className="bg-red-100">
+                  Sorry there was an issue: {error.err.message}
+                  {console.log(error.err.message, "error here")}
+                </h1>
+              ) : (
+                <span></span>
+              )}
             </li>
             <li>
               <span className="font-bold">Designer: </span>
               {singleReview.designer}
             </li>
           </ul>
-          <span className="font-bold">Comments: </span>
+          <br></br>
+          <span className="font-bold">User Comments: </span>
           <ReviewIdComments />
         </div>
       </div>

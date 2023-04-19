@@ -2,8 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Reviews from "./Reviews";
 import ReviewSingle from "./ReviewSingle";
 import { useState, useEffect } from "react";
-import { getReviews, getReviewId, getCategories } from "../api";
-import { useParams } from "react-router-dom";
+import { getReviews } from "../api";
 import HomeBody from "./HomeBody";
 import ReviewIdComments from "./ReviewIdComments";
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { patchVotes } from "../api";
 
 export default function ReviewCard({
   owner,
@@ -13,9 +14,19 @@ export default function ReviewCard({
   comment_count,
 }) {
   const [showReview, setShowReview] = useState(false);
+  const [voteCount, setVoteCount] = useState(0);
+  const [error, setError] = useState(null);
 
   const handleExpand = () => {
     showReview ? setShowReview(false) : setShowReview(true);
+  };
+
+  const handleVoteClick = (review_id) => {
+    setVoteCount(1);
+    patchVotes(review_id).catch((err) => {
+      setError({ err });
+      setVoteCount(0);
+    });
   };
 
   return (
@@ -44,7 +55,26 @@ export default function ReviewCard({
             </li>
             <li>
               <span className="font-bold">Votes: </span>
-              {votes}
+              {votes + voteCount}
+              <span> </span>
+              {voteCount ? (
+                <span className="bg-blue-200">thanks for voting!</span>
+              ) : (
+                <button
+                  onClick={() => handleVoteClick(review_id)}
+                  className="text-black opacity-100 hover:opacity-75 bg-green-300 px-2"
+                >
+                  +
+                </button>
+              )}
+              {error ? (
+                <h1 className="bg-red-100">
+                  Sorry there was an issue: {error.err.message}
+                  {console.log(error.err.message, "error here")}
+                </h1>
+              ) : (
+                <span></span>
+              )}
             </li>
             <li>
               <span className="font-bold">Designer: </span>
@@ -55,13 +85,6 @@ export default function ReviewCard({
               {comment_count}
             </li>
           </ul>
-          <p></p>
-          <button
-            className="text-black opacity-50 hover:opacity-100 bg-red-300"
-            onClick={handleExpand}
-          >
-            show less
-          </button>
         </div>
       ) : (
         <button
@@ -71,6 +94,7 @@ export default function ReviewCard({
           expand
         </button>
       )}
+
       <Link to={`/reviews/${review_id}`} key={review_id}>
         <div className="text-right">
           <button className="text-black opacity-50 hover:opacity-100 bg-green-300">

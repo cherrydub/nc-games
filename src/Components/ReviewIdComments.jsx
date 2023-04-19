@@ -13,15 +13,17 @@ export default function ReviewIdComments() {
     });
   }, [review_id]);
 
-  if (comments.length === 0) return <h1>Sorry no comments</h1>;
-
-  if (comments.length > 0) {
+  if (comments.length === 0)
+    return <h1 className="bg-orange-200">Sorry no comments</h1>;
+  else {
     return (
-      <div className="ReviewIdComments">
-        {comments.map((comment) => {
-          return <CommentCard key={comments.comment_id} {...comment} />;
-        })}
-      </div>
+      <>
+        <div className="ReviewIdComments bg-green-200">
+          {comments.map((comment) => {
+            return <CommentCard key={comments.comment_id} {...comment} />;
+          })}
+        </div>
+      </>
     );
   }
 }
