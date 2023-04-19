@@ -6,8 +6,6 @@ import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 
 function App() {
-  // const [isLoading, setIsLoading] = useState(true);
-
   return (
     <div className="App" id="app-top">
       <Header />

@@ -71,15 +71,13 @@ export default function ReviewCard({
           expand
         </button>
       )}
-      <p>
-        <Link to={`/reviews/${review_id}`} key={review_id}>
-          <div className="text-right">
-            <button className="text-black opacity-50 hover:opacity-100 bg-green-300">
-              more info <span>{`>>>`}</span>
-            </button>
-          </div>
-        </Link>
-      </p>
+      <Link to={`/reviews/${review_id}`} key={review_id}>
+        <div className="text-right">
+          <button className="text-black opacity-50 hover:opacity-100 bg-green-300">
+            more info <span>{`>>>`}</span>
+          </button>
+        </div>
+      </Link>
     </div>
   );
 }

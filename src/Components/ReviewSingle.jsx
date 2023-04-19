@@ -47,11 +47,6 @@ export default function ReviewSingle() {
           </ul>
           <span className="font-bold">Comments: </span>
           <ReviewIdComments />
-          {/* <Link to={`/reviews/${review_id}/comments`} key={review_id}>
-        <button className="rounded-full text-black opacity-50 px-4 py-2 hover:opacity-100 bg-orange-300">
-          Check out comments
-        </button>
-      </Link> */}
         </div>
       </div>
     </div>
