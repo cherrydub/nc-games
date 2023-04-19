@@ -27,10 +27,6 @@ export default function Body() {
         <Route path="/" element={<HomeBody />} />
         <Route path="/reviews" element={<Reviews reviews={reviews} />} />
         <Route path="/reviews/:review_id" element={<ReviewSingle />} />
-        <Route
-          path="/reviews/:review_id/comments"
-          element={<ReviewIdComments />}
-        />
       </Routes>
     </div>
   );

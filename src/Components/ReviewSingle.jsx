@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReviewId, getReviewIdcomments } from "../api";
+import { getReviewId, patchVotes } from "../api";
 import { Link } from "react-router-dom";
 import ReviewIdComments from "./ReviewIdComments";
 
@@ -13,6 +13,11 @@ export default function ReviewSingle() {
       setSingleReview(data);
     });
   }, [review_id]);
+
+  const handleVoteClick = () => {
+    patchVotes(review_id);
+    console.log("testing");
+  };
 
   return (
     <div className="flex justify-center">
@@ -38,7 +43,16 @@ export default function ReviewSingle() {
 
             <li>
               <span className="font-bold">Votes: </span>
+              <button className="text-black opacity-50 hover:opacity-100 bg-red-300">
+                -
+              </button>
               {singleReview.votes}
+              <button
+                onClick={() => handleVoteClick()}
+                className="text-black opacity-50 hover:opacity-100 bg-green-300"
+              >
+                +
+              </button>
             </li>
             <li>
               <span className="font-bold">Designer: </span>
@@ -47,11 +61,6 @@ export default function ReviewSingle() {
           </ul>
           <span className="font-bold">Comments: </span>
           <ReviewIdComments />
-          {/* <Link to={`/reviews/${review_id}/comments`} key={review_id}>
-        <button className="rounded-full text-black opacity-50 px-4 py-2 hover:opacity-100 bg-orange-300">
-          Check out comments
-        </button>
-      </Link> */}
         </div>
       </div>
     </div>
