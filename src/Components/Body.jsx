@@ -6,7 +6,12 @@ import { getReviews } from "../api";
 import HomeBody from "./HomeBody";
 import ReviewIdComments from "./ReviewIdComments";
 
-export default function Body() {
+export default function Body({
+  users,
+  setUsers,
+  userLoggedIn,
+  setUserLoggedIn,
+}) {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,7 +30,10 @@ export default function Body() {
       <Routes>
         <Route path="/" element={<HomeBody />} />
         <Route path="/reviews" element={<Reviews reviews={reviews} />} />
-        <Route path="/reviews/:review_id" element={<ReviewSingle />} />
+        <Route
+          path="/reviews/:review_id"
+          element={<ReviewSingle userLoggedIn={userLoggedIn} />}
+        />
       </Routes>
     </div>
   );

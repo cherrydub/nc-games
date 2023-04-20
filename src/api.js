@@ -4,10 +4,28 @@ const baseAPI = axios.create({
   baseURL: `https://nc-games-lh3e.onrender.com/api`,
 });
 
-export const getReviews = () => {
-  return baseAPI.get("/reviews").then((res) => {
-    return res.data.reviews;
+// export const getReviews = () => {
+//   return baseAPI.get("/reviews").then((res) => {
+//     return res.data.reviews;
+//   });
+// };
+
+export const getReviews = async () => {
+  const res = await baseAPI.get("/reviews");
+  return res.data.reviews;
+};
+
+export const getUsers = async () => {
+  const res = await baseAPI.get("/users");
+  return res.data.users;
+};
+
+export const postComment = async (review_id, username, body) => {
+  const res = await baseAPI.post(`/reviews/${review_id}/comments`, {
+    username: username,
+    body: body,
   });
+  return res.data.comment;
 };
 
 export const getReviewId = (review_id) => {

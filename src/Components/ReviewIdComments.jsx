@@ -20,7 +20,7 @@ export default function ReviewIdComments() {
       <>
         <div className="ReviewIdComments bg-green-200">
           {comments.map((comment) => {
-            return <CommentCard key={comments.comment_id} {...comment} />;
+            return <CommentCard key={crypto.randomUUID()} {...comment} />;
           })}
         </div>
       </>
