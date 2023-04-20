@@ -2,16 +2,25 @@ import React, { useState } from "react";
 import { postComment } from "../api";
 import { useParams } from "react-router-dom";
 
-export default function CommentFormPost({ userLoggedIn, comment, setComment }) {
+export default function CommentFormPost({
+  userLoggedIn,
+  comments,
+  setComments,
+}) {
   const { review_id } = useParams({});
-
   const [submittedComment, setSubmittedComment] = useState(false);
+  const [comment, setComment] = useState("");
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    postComment(review_id, userLoggedIn, comment);
+    postComment(review_id, userLoggedIn, comment).then((newComment) => {
+      setComments([newComment, ...comments]);
+    });
     setComment("");
     setSubmittedComment(true);
+    setTimeout(() => {
+      setSubmittedComment(false);
+    }, 15000);
   };
 
   const isSubmitDisabled = comment.trim() === "";
@@ -20,7 +29,19 @@ export default function CommentFormPost({ userLoggedIn, comment, setComment }) {
     : "bg-orange-300 text-black opacity-100 hover:opacity-75 px-2";
 
   return submittedComment ? (
-    <h1>Thank you {userLoggedIn} for your comment!</h1>
+    <>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <h1 className="text-center">
+        Thank you <span className="font-bold">{userLoggedIn}</span> for your
+        comment!
+      </h1>
+      <br></br>
+      <br></br>
+      <br></br>
+    </>
   ) : (
     <div>
       <form onSubmit={handleCommentSubmit}>

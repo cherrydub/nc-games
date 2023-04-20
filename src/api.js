@@ -25,6 +25,7 @@ export const postComment = async (review_id, username, body) => {
     username: username,
     body: body,
   });
+  console.log(res.data.comment, "api stuff");
   return res.data.comment;
 };
 

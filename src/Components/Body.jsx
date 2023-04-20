@@ -4,14 +4,8 @@ import ReviewSingle from "./ReviewSingle";
 import { useState, useEffect } from "react";
 import { getReviews, getCategories } from "../api";
 import HomeBody from "./HomeBody";
-import ReviewIdComments from "./ReviewIdComments";
 
-export default function Body({
-  users,
-  setUsers,
-  userLoggedIn,
-  setUserLoggedIn,
-}) {
+export default function Body({ userLoggedIn }) {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);

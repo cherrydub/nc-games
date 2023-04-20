@@ -5,11 +5,11 @@ import ReviewIdComments from "./ReviewIdComments";
 import CommentFormPost from "./CommentFormPost";
 
 export default function ReviewSingle({ userLoggedIn }) {
-  const [comment, setComment] = useState("");
   const { review_id } = useParams();
   const [singleReview, setSingleReview] = useState([]);
   const [voteCount, setVoteCount] = useState(0);
   const [error, setError] = useState(null);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     getReviewId(review_id).then((data) => {
@@ -76,8 +76,8 @@ export default function ReviewSingle({ userLoggedIn }) {
           </ul>
           {userLoggedIn ? (
             <CommentFormPost
-              comment={comment}
-              setComment={setComment}
+              comments={comments}
+              setComments={setComments}
               userLoggedIn={userLoggedIn}
             />
           ) : (
@@ -92,7 +92,8 @@ export default function ReviewSingle({ userLoggedIn }) {
 
           <span className="font-bold">User Comments: </span>
           <ReviewIdComments
-            comment={comment}
+            comments={comments}
+            setComments={setComments}
             review_id={review_id}
             userLoggedIn={userLoggedIn}
           />
