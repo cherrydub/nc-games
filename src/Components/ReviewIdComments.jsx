@@ -3,13 +3,13 @@ import { getReviewIdcomments } from "../api";
 import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 
-export default function ReviewIdComments() {
+export default function ReviewIdComments({ comment }) {
   const { review_id } = useParams();
-  const [comments, setcomments] = useState([]);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     getReviewIdcomments(review_id).then((data) => {
-      setcomments(data);
+      setComments(data);
     });
   }, [review_id]);
 
@@ -20,7 +20,13 @@ export default function ReviewIdComments() {
       <>
         <div className="ReviewIdComments bg-green-200">
           {comments.map((comment) => {
-            return <CommentCard key={crypto.randomUUID()} {...comment} />;
+            return (
+              <CommentCard
+                key={crypto.randomUUID()}
+                {...comment}
+                setComments={setComments}
+              />
+            );
           })}
         </div>
       </>

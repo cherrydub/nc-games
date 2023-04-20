@@ -9,8 +9,6 @@ function App() {
   const [users, setUsers] = useState([]);
   const [userLoggedIn, setUserLoggedIn] = useState("");
 
-  console.log(userLoggedIn, "inside app.js");
-
   useEffect(() => {
     getUsers().then((data) => {
       setUsers(data);

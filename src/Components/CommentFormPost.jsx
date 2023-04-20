@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { postComment } from "../api";
+import { useParams } from "react-router-dom";
 
-export default function CommentFormPost({ review_id, userLoggedIn }) {
-  const [comment, setComment] = useState("");
+export default function CommentFormPost({ userLoggedIn, comment, setComment }) {
+  const { review_id } = useParams({});
+
   const [submittedComment, setSubmittedComment] = useState(false);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    postComment(10, userLoggedIn, comment);
+    postComment(review_id, userLoggedIn, comment);
     setComment("");
     setSubmittedComment(true);
   };
+
+  const isSubmitDisabled = comment.trim() === "";
+  const buttonClassName = isSubmitDisabled
+    ? "bg-red-500 text-white opacity-50 cursor-not-allowed px-2"
+    : "bg-orange-300 text-black opacity-100 hover:opacity-75 px-2";
 
   return submittedComment ? (
     <h1>Thank you {userLoggedIn} for your comment!</h1>
@@ -30,8 +37,9 @@ export default function CommentFormPost({ review_id, userLoggedIn }) {
         />
         <p>
           <button
-            className="text-black opacity-100 hover:opacity-75 bg-orange-300 px-2"
+            className={buttonClassName}
             type="submit"
+            disabled={isSubmitDisabled}
           >
             Submit
           </button>

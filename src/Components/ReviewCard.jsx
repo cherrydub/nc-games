@@ -70,7 +70,6 @@ export default function ReviewCard({
               {error ? (
                 <h1 className="bg-red-100">
                   Sorry there was an issue: {error.err.message}
-                  {console.log(error.err.message, "error here")}
                 </h1>
               ) : (
                 <span></span>

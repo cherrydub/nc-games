@@ -5,6 +5,7 @@ import ReviewIdComments from "./ReviewIdComments";
 import CommentFormPost from "./CommentFormPost";
 
 export default function ReviewSingle({ userLoggedIn }) {
+  const [comment, setComment] = useState("");
   const { review_id } = useParams();
   const [singleReview, setSingleReview] = useState([]);
   const [voteCount, setVoteCount] = useState(0);
@@ -62,7 +63,6 @@ export default function ReviewSingle({ userLoggedIn }) {
               {error ? (
                 <h1 className="bg-red-100">
                   Sorry there was an issue: {error.err.message}
-                  {console.log(error.err.message, "error here")}
                 </h1>
               ) : (
                 <span></span>
@@ -75,7 +75,11 @@ export default function ReviewSingle({ userLoggedIn }) {
             <br></br>
           </ul>
           {userLoggedIn ? (
-            <CommentFormPost userLoggedIn={userLoggedIn} />
+            <CommentFormPost
+              comment={comment}
+              setComment={setComment}
+              userLoggedIn={userLoggedIn}
+            />
           ) : (
             <h1 className="italic">
               Please{" "}
@@ -85,10 +89,13 @@ export default function ReviewSingle({ userLoggedIn }) {
               to post comment
             </h1>
           )}
-          {console.log(userLoggedIn, "userloggedin")}
 
           <span className="font-bold">User Comments: </span>
-          <ReviewIdComments review_id={review_id} userLoggedIn={userLoggedIn} />
+          <ReviewIdComments
+            comment={comment}
+            review_id={review_id}
+            userLoggedIn={userLoggedIn}
+          />
         </div>
       </div>
     </div>
