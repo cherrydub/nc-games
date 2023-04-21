@@ -1,18 +1,37 @@
 import { useState, useEffect } from "react";
-import { getReviews, getCategories } from "./api";
 import "./App.css";
 import Body from "./Components/Body";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import { getUsers } from "./api";
 
 function App() {
+  const [users, setUsers] = useState([]);
+  const [userLoggedIn, setUserLoggedIn] = useState("");
+
+  useEffect(() => {
+    getUsers().then((data) => {
+      setUsers(data);
+    });
+  }, []);
+
   return (
     <div className="App" id="app-top">
-      <Header />
+      <Header
+        users={users}
+        setUsers={setUsers}
+        userLoggedIn={userLoggedIn}
+        setUserLoggedIn={setUserLoggedIn}
+      />
 
-      <Body />
+      <Body
+        users={users}
+        setUsers={setUsers}
+        userLoggedIn={userLoggedIn}
+        setUserLoggedIn={setUserLoggedIn}
+      />
 
-      <Footer />
+      <Footer userLoggedIn={userLoggedIn} />
     </div>
   );
 }

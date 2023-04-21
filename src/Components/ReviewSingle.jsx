@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getReviewId, patchVotes } from "../api";
-import { Link } from "react-router-dom";
 import ReviewIdComments from "./ReviewIdComments";
+import CommentFormPost from "./CommentFormPost";
 
-export default function ReviewSingle() {
+export default function ReviewSingle({ userLoggedIn }) {
   const { review_id } = useParams();
   const [singleReview, setSingleReview] = useState([]);
   const [voteCount, setVoteCount] = useState(0);
   const [error, setError] = useState(null);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     getReviewId(review_id).then((data) => {
@@ -45,7 +46,6 @@ export default function ReviewSingle() {
               <span className="font-bold">Category: </span>
               {singleReview.category}
             </li>
-
             <li>
               <span className="font-bold">Votes: </span>
               {singleReview.votes + voteCount}
@@ -63,7 +63,6 @@ export default function ReviewSingle() {
               {error ? (
                 <h1 className="bg-red-100">
                   Sorry there was an issue: {error.err.message}
-                  {console.log(error.err.message, "error here")}
                 </h1>
               ) : (
                 <span></span>
@@ -73,10 +72,31 @@ export default function ReviewSingle() {
               <span className="font-bold">Designer: </span>
               {singleReview.designer}
             </li>
+            <br></br>
           </ul>
-          <br></br>
+          {userLoggedIn ? (
+            <CommentFormPost
+              comments={comments}
+              setComments={setComments}
+              userLoggedIn={userLoggedIn}
+            />
+          ) : (
+            <h1 className="italic">
+              Please{" "}
+              <button className="text-black opacity-100 hover:opacity-75 bg-orange-300 px-2">
+                <a href="#app-top">sign in</a>
+              </button>{" "}
+              to post comment
+            </h1>
+          )}
+
           <span className="font-bold">User Comments: </span>
-          <ReviewIdComments />
+          <ReviewIdComments
+            comments={comments}
+            setComments={setComments}
+            review_id={review_id}
+            userLoggedIn={userLoggedIn}
+          />
         </div>
       </div>
     </div>

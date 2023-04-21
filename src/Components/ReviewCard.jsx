@@ -70,7 +70,6 @@ export default function ReviewCard({
               {error ? (
                 <h1 className="bg-red-100">
                   Sorry there was an issue: {error.err.message}
-                  {console.log(error.err.message, "error here")}
                 </h1>
               ) : (
                 <span></span>
@@ -85,10 +84,16 @@ export default function ReviewCard({
               {comment_count}
             </li>
           </ul>
+          <button
+            className="text-black opacity-100 hover:opacity-75 bg-red-300 px-2"
+            onClick={handleExpand}
+          >
+            show less
+          </button>
         </div>
       ) : (
         <button
-          className="text-black opacity-50 hover:opacity-100 bg-blue-300"
+          className="text-black opacity-100 hover:opacity-75 bg-blue-300 px-2"
           onClick={handleExpand}
         >
           expand
@@ -97,7 +102,7 @@ export default function ReviewCard({
 
       <Link to={`/reviews/${review_id}`} key={review_id}>
         <div className="text-right">
-          <button className="text-black opacity-50 hover:opacity-100 bg-green-300">
+          <button className="text-black opacity-100 hover:opacity-75 bg-green-300 px-2">
             more info <span>{`>>>`}</span>
           </button>
         </div>
