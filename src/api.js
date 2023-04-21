@@ -10,8 +10,12 @@ const baseAPI = axios.create({
 //   });
 // };
 
-export const getReviews = async () => {
-  const res = await baseAPI.get("/reviews");
+export const getReviews = async (category) => {
+  const res = await baseAPI.get("/reviews", {
+    params: {
+      category: category,
+    },
+  });
   return res.data.reviews;
 };
 

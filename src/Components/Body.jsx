@@ -4,12 +4,15 @@ import ReviewSingle from "./ReviewSingle";
 import { useState, useEffect } from "react";
 import { getReviews, getCategories } from "../api";
 import HomeBody from "./HomeBody";
+import ReviewCategoryFilter from "./ReviewCategoryFilter";
 
 export default function Body({ userLoggedIn }) {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [reviewCategory, setReviewCategory] = useState("");
+
+  //backup till here
 
   useEffect(() => {
     setIsLoading(true);
@@ -37,6 +40,11 @@ export default function Body({ userLoggedIn }) {
     <h1>Loading buddy</h1>
   ) : (
     <div className="Body mb-10 mt-10 p-5" id="body-top">
+      <ReviewCategoryFilter
+        categories={categories}
+        reviewCategory={reviewCategory}
+        setReviewCategory={setReviewCategory}
+      />
       <Routes>
         <Route path="/" element={<HomeBody />} />
         <Route
@@ -51,6 +59,7 @@ export default function Body({ userLoggedIn }) {
             />
           }
         />
+
         <Route
           path="/reviews/:review_id"
           element={<ReviewSingle userLoggedIn={userLoggedIn} />}
