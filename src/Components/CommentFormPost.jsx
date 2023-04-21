@@ -10,17 +10,19 @@ export default function CommentFormPost({
   const { review_id } = useParams({});
   const [submittedComment, setSubmittedComment] = useState(false);
   const [comment, setComment] = useState("");
+  const [error, setError] = useState(null);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    postComment(review_id, userLoggedIn, comment).then((newComment) => {
-      setComments([newComment, ...comments]);
-    });
-    setComment("");
-    setSubmittedComment(true);
-    // setTimeout(() => {
-    //   setSubmittedComment(false);
-    // }, 15000);
+    postComment(review_id, userLoggedIn, comment)
+      .then((newComment) => {
+        setComments([newComment, ...comments]);
+        setComment("");
+        setSubmittedComment(true);
+      })
+      .catch((err) => {
+        setError({ err });
+      });
   };
 
   const isSubmitDisabled = comment.trim() === "";
@@ -64,6 +66,13 @@ export default function CommentFormPost({
           >
             Submit
           </button>
+          {error ? (
+            <h1 className="bg-red-100">
+              Sorry there was an issue: {error.err.message}
+            </h1>
+          ) : (
+            <span></span>
+          )}
         </p>
       </form>
     </div>
