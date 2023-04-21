@@ -18,9 +18,9 @@ export default function CommentFormPost({
     });
     setComment("");
     setSubmittedComment(true);
-    setTimeout(() => {
-      setSubmittedComment(false);
-    }, 15000);
+    // setTimeout(() => {
+    //   setSubmittedComment(false);
+    // }, 15000);
   };
 
   const isSubmitDisabled = comment.trim() === "";
