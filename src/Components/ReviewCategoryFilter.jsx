@@ -9,9 +9,7 @@ export default function ReviewCategoryFilter({
   console.log(categories, "filterpage");
   return (
     <>
-      <div>
-        <Link to={`/reviews?category=test`}>test</Link>
-      </div>
+      <div>{/* <Link to={`/reviews?category=test`}>test</Link> */}</div>
       <div className="text-center">
         categories:
         <label htmlFor="categoryselect" className="text-sm"></label>
