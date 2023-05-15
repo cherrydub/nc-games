@@ -1,5 +1,6 @@
 <div align="center">
   NC Games preview
+  <p></p>
   <img src="./ncgames.gif" alt="Alt Text" />
 </div>
 <!-- 
