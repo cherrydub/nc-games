@@ -1,4 +1,7 @@
-![site preview](./ncgames.gif)
+<div align="center">
+  NC Games preview
+  <img src="./ncgames.gif" alt="Alt Text" />
+</div>
 <!-- 
 # Getting Started with Create React App
 
