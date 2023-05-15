@@ -37,7 +37,10 @@ export default function Body({ userLoggedIn }) {
   });
 
   return isLoading ? (
-    <h1>Loading buddy</h1>
+    <h1>
+      Loading...Sorry this is using a free ElephantSQL to hosts PostgreSQL...may
+      take longer than expected to fetch the queries
+    </h1>
   ) : (
     <div className="Body mb-10 mt-10 p-5" id="body-top">
       <ReviewCategoryFilter
