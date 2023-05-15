@@ -16,6 +16,8 @@ export default function Reviews({
         reviewCategory={reviewCategory}
         setReviewCategory={setReviewCategory}
       /> */}
+
+      
       <div className="Reviews flex flex-wrap gap-4 justify-center">
         {reviews.map((review) => {
           return <ReviewCard key={review.review_id} {...review} />;
