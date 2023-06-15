@@ -8,7 +8,7 @@ export default function CommentCard({
   votes,
 }) {
   return (
-    <div className="CommentCard  border-black border p-1 max-w-xs">
+    <div className="border-black border p-1 max-w-xs">
       <ul>
         <li>
           <span className="font-bold">Comment: </span>

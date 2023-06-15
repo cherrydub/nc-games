@@ -11,6 +11,7 @@ export default function Body({ userLoggedIn }) {
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [reviewCategory, setReviewCategory] = useState("");
+  const [redirectReviews, setRedirectReviews] = useState(false);
 
   //backup till here
 
@@ -19,6 +20,7 @@ export default function Body({ userLoggedIn }) {
     getReviews().then((data) => {
       setReviews(data);
       setIsLoading(false);
+      setRedirectReviews(true);
     });
   }, []);
 
@@ -42,14 +44,17 @@ export default function Body({ userLoggedIn }) {
       take longer than expected to fetch the queries
     </h1>
   ) : (
-    <div className="Body mb-10 mt-10 p-5" id="body-top">
-      <ReviewCategoryFilter
+    <div className="mb-10 mt-10 p-5" id="body-top">
+      {/* <ReviewCategoryFilter
         categories={categories}
         reviewCategory={reviewCategory}
         setReviewCategory={setReviewCategory}
-      />
+      /> */}
       <Routes>
-        <Route path="/" element={<HomeBody />} />
+        <Route
+          path="/"
+          element={<HomeBody redirectReviews={redirectReviews} />}
+        />
         <Route
           // path={reviewCategory ? `/reviews/${reviewCategory}` : "/reviews"}
           path="/reviews"

@@ -17,7 +17,7 @@ export default function ReviewIdComments({ comment, comments, setComments }) {
   else {
     return (
       <>
-        <div className="ReviewIdComments bg-green-200">
+        <div className="ReviewIdComments bg-white">
           {comments.map((comment) => {
             return (
               <CommentCard

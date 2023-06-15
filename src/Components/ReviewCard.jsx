@@ -30,7 +30,7 @@ export default function ReviewCard({
   };
 
   return (
-    <div className="ReviewCard border-black border max-w-xs">
+    <div className=" border-black border max-w-xs bg-white bg-opacity-75">
       <img src={review_img_url} alt={title} />
       <div className="p-1">
         <ul>
@@ -62,7 +62,7 @@ export default function ReviewCard({
               ) : (
                 <button
                   onClick={() => handleVoteClick(review_id)}
-                  className="text-black opacity-100 hover:opacity-75 bg-green-300 px-2"
+                  className="text-black border border-black opacity-100 hover:opacity-75 hover:text-orange-500 bg-white px-2"
                 >
                   +
                 </button>
@@ -93,7 +93,7 @@ export default function ReviewCard({
         </div>
       ) : (
         <button
-          className="text-black opacity-100 hover:opacity-75 bg-blue-300 px-2"
+          className="text-black opacity-100 hover:opacity-75 bg-orange-300 px-2 hover:text-white"
           onClick={handleExpand}
         >
           expand
@@ -102,7 +102,7 @@ export default function ReviewCard({
 
       <Link to={`/reviews/${review_id}`} key={review_id}>
         <div className="text-right">
-          <button className="text-black opacity-100 hover:opacity-75 bg-green-300 px-2">
+          <button className="text-black opacity-100 hover:opacity-75 bg-white px-2 hover:text-orange-500">
             more info <span>{`>>>`}</span>
           </button>
         </div>

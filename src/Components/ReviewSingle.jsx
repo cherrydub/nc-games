@@ -27,7 +27,7 @@ export default function ReviewSingle({ userLoggedIn }) {
 
   return (
     <div className="flex justify-center">
-      <div className="ReviewSingle border-black border max-w-xs">
+      <div className="ReviewSingle border-black border max-w-xs bg-white bg-opacity-75">
         <img src={singleReview.review_img_url} alt={singleReview.title} />
         <div className="p-1">
           <ul>
@@ -55,7 +55,7 @@ export default function ReviewSingle({ userLoggedIn }) {
               ) : (
                 <button
                   onClick={() => handleVoteClick(review_id)}
-                  className="text-black opacity-100 hover:opacity-75 bg-green-300 px-2"
+                  className="text-black opacity-100 hover:opacity-75 bg-white-300 border border-black px-2 hover:text-orange-500"
                 >
                   +
                 </button>

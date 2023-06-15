@@ -23,11 +23,11 @@ code {
 
 .font-gamefont {
   font-family: "gamefont", sans-serif;
-  font-size: 2rem;
+  /* font-size: 2rem; */
 }
 
 #nc-header {
-  font-size: 8rem;
+  font-size: 6rem;
 }
 
 html {

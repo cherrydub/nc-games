@@ -8,7 +8,8 @@ export default function Header({
   setUserLoggedIn,
 }) {
   return (
-    <div className="Header vh50 bg-green-300 text-center">
+    // <div className="Header vh50 bg-green-300 text-center">
+    <div className="Header bg-gray-300 text-center bg-opacity-75">
       <h1 className="font-gamefont " id="nc-header">
         NC Games
       </h1>

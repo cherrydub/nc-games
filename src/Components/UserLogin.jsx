@@ -12,7 +12,7 @@ export default function UserLogin({
       <span>
         <button
           onClick={() => setUserLoggedIn("")}
-          className="text-black opacity-100 hover:opacity-75 bg-red-300 p-2 mx-2"
+          className="text-black opacity-100 hover:bg-orange-300 border border-black bg-red-300 p-2 mx-2"
         >
           sign out
         </button>
