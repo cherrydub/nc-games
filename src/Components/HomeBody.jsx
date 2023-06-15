@@ -19,7 +19,7 @@ export default function HomeBody({ redirectReviews }) {
           </Link>
         </div>
       ) : (
-        <p>Loading..Loading..</p>
+        <p>Loading...Loading...</p>
       )}
     </div>
   );
